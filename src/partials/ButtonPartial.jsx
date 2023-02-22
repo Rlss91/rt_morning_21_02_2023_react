@@ -16,7 +16,7 @@ const ButtonPartial = ({ btnOption, icon, children }) => {
   const defaultBtnOption = buttonPartialOptions.primary;
   return (
     <button className={`btn btn-${btnOption ? btnOption : defaultBtnOption}`}>
-      <i className={`bi ${icon}`}></i>
+      {icon && <i className={`bi ${icon}`}></i>}
       {children}
     </button>
   );
