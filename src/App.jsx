@@ -9,8 +9,8 @@ const App = () => {
         <Navbar isDark={true} />
       </header>
       <main>
-        {/* <HomePage /> */}
-        <RegisterPage />
+        <HomePage />
+        {/* <RegisterPage /> */}
       </main>
       <footer></footer>
     </div>

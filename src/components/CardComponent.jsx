@@ -15,7 +15,7 @@ const CardComponent = ({ imgUrl, title, description }) => {
   // const title = "Horse";
   // const description = "a0936y4j-0yaos-mgpokgrma;lkfmg;lae,f;lawef";
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card">
       <img src={imgUrl} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{title}</h5>

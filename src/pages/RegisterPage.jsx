@@ -3,8 +3,8 @@ import { Fragment, useState } from "react";
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
     nameInput: "",
-    emailInput: "kenny@gmail.com",
-    passwordInput: "123456",
+    emailInput: "",
+    passwordInput: "",
   });
   const handleBtnClick = () => {
     console.log("clicked");
