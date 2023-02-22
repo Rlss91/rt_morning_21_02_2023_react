@@ -1,33 +1,35 @@
 import { Fragment, useState } from "react";
 
 const RegisterPage = () => {
-  const [inputsValue, setInputsValue] = useState({
-    nameInput: "",
-    emailInput: "kenny@gmail.com",
-    passwordInput: "123456",
-  });
+  const [nameInputValue, setNameInputValue] = useState("");
+  const [emailInputValue, setEmailInputValue] = useState("");
+  const [passwordInputValue, setPasswordInputValue] = useState("");
   const handleBtnClick = () => {
     console.log("clicked");
   };
-  const handleInputChange = (ev) => {
-    const newInputsValue = JSON.parse(JSON.stringify(inputsValue));
-    newInputsValue[ev.target.id] = ev.target.value;
-    setInputsValue(newInputsValue);
+  const handleNameInputChange = (ev) => {
+    setNameInputValue(ev.target.value);
+  };
+  const handleEmailInputChange = (ev) => {
+    setEmailInputValue(ev.target.value);
+  };
+  const handlePasswordInputChange = (ev) => {
+    setPasswordInputValue(ev.target.value);
   };
   return (
     <Fragment>
       <h1>Register page</h1>
       <div className="mb-3">
         <label htmlFor="nameInput" className="form-label">
-          Name
+          Name - {nameInputValue}
         </label>
         <input
           type="text"
           className="form-control"
           id="nameInput"
           aria-describedby="emailHelp"
-          value={inputsValue.nameInput}
-          onChange={handleInputChange}
+          value={nameInputValue}
+          onChange={handleNameInputChange}
           placeholder="Name"
         />
       </div>
@@ -40,8 +42,8 @@ const RegisterPage = () => {
           className="form-control"
           id="emailInput"
           aria-describedby="emailHelp"
-          value={inputsValue.emailInput}
-          onChange={handleInputChange}
+          value={emailInputValue}
+          onChange={handleEmailInputChange}
         />
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
@@ -51,19 +53,15 @@ const RegisterPage = () => {
         <label htmlFor="passwordInput" className="form-label">
           Password
         </label>
-        <input
-          type="password"
-          className="form-control"
-          id="passwordInput"
-          value={inputsValue.passwordInput}
-          onChange={handleInputChange}
-        />
+        <input type="password" className="form-control" id="passwordInput" />
       </div>
       <div className="mb-3 form-check">
         <input
           type="checkbox"
           className="form-check-input"
           id="exampleCheck1"
+          value={passwordInputValue}
+          onChange={handlePasswordInputChange}
         />
         <label className="form-check-label" htmlFor="exampleCheck1">
           Check me out
