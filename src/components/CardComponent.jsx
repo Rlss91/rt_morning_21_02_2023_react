@@ -15,7 +15,7 @@ const CardComponent = ({ imgUrl, title, description }) => {
   // const title = "Horse";
   // const description = "a0936y4j-0yaos-mgpokgrma;lkfmg;lae,f;lawef";
   return (
-    <div className="card">
+    <div className="card" style={{ width: "18rem" }}>
       <img src={imgUrl} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
@@ -23,12 +23,7 @@ const CardComponent = ({ imgUrl, title, description }) => {
         {/* <a href="#" className="btn btn-primary">
           Go somewhere
         </a> */}
-        <ButtonPartial
-          btnOption={buttonPartialOptions.danger}
-          icon="bi-chat-left-heart-fill"
-        >
-          click me
-        </ButtonPartial>
+        <ButtonPartial icon="bi-chat-left-heart-fill">click me</ButtonPartial>
       </div>
     </div>
   );
