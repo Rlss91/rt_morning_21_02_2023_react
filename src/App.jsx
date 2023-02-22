@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
+import RegisterPage from "./pages/RegisterPage";
 
 const App = () => {
   return (
@@ -8,7 +9,8 @@ const App = () => {
         <Navbar isDark={true} />
       </header>
       <main>
-        <HomePage />
+        {/* <HomePage /> */}
+        <RegisterPage />
       </main>
       <footer></footer>
     </div>
