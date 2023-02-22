@@ -1,4 +1,5 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
+import ButtonPartial from "../partials/ButtonPartial";
 
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
@@ -6,6 +7,17 @@ const RegisterPage = () => {
     emailInput: "",
     passwordInput: "",
   });
+  useEffect(() => {
+    //on load to elm/component
+    return () => {
+      //when elm destroyed
+      console.log("elm done");
+    };
+  }, []);
+  useEffect(() => {
+    //each time inputsValue value changed this function will be executed
+    console.log("inputsValue changed", inputsValue);
+  }, [inputsValue]);
   const handleBtnClick = () => {
     console.log("clicked");
   };
@@ -72,6 +84,7 @@ const RegisterPage = () => {
       <button className="btn btn-primary" onClick={handleBtnClick}>
         Submit
       </button>
+      <ButtonPartial>click me</ButtonPartial>
     </Fragment>
   );
 };
