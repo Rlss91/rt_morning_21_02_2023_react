@@ -1,6 +1,12 @@
-.nav-item a,
+/* .nav-item a,
 .navbar-nav .nav-item .nav-link.active,
 .nav-item .nav-link.disabled,
 .container-fluid .navbar-brand {
   color: white;
+} */
+.nav-item-light {
+  color: white !important;
 }
+/* .nav-item-dark {
+  color: white !important;
+} */

@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div className="container">
       <header>
-        <Navbar />
+        <Navbar isDark={true} />
       </header>
       <main>
         <HomePage />

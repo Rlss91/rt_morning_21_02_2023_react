@@ -1,13 +1,17 @@
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ isDark }) => {
   return (
     <nav
-      className="navbar bg-primary navbar-expand-lg bg-body-tertiary"
-      data-bs-theme="light"
+      className={`navbar ${
+        isDark ? "bg-primary" : ""
+      } navbar-expand-lg bg-body-tertiary`}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a
+          className={`navbar-brand ${isDark ? "nav-item-light" : ""}`}
+          href="#"
+        >
           Navbar
         </a>
         <button
@@ -24,18 +28,27 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a
+                className={`nav-link ${isDark ? "nav-item-light" : ""} active`}
+                aria-current="page"
+                href="#"
+              >
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a
+                className={`nav-link ${isDark ? "nav-item-light" : ""}`}
+                href="#"
+              >
                 Link
               </a>
             </li>
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle"
+                className={`nav-link ${
+                  isDark ? "nav-item-light" : ""
+                } dropdown-toggle`}
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -43,7 +56,7 @@ const Navbar = () => {
               >
                 Dropdown
               </a>
-              <ul className="dropdown-menu bg-primary">
+              <ul className={`dropdown-menu ${isDark ? "bg-primary" : ""} `}>
                 <li>
                   <a className="dropdown-item" href="#">
                     Action
@@ -65,7 +78,13 @@ const Navbar = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
+              <a
+                className={`nav-link ${
+                  isDark ? "nav-item-light" : ""
+                } disabled`}
+              >
+                Disabled
+              </a>
             </li>
           </ul>
           <form className="d-flex" role="search">
@@ -75,7 +94,12 @@ const Navbar = () => {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-light" type="submit">
+            <button
+              className={`btn ${
+                isDark ? "btn-outline-light" : "btn-outline-primary"
+              }`}
+              type="submit"
+            >
               Search
             </button>
           </form>
