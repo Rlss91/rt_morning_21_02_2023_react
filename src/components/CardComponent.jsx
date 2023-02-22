@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import ButtonPartial, { buttonPartialOptions } from "../partials/ButtonPartial";
 
 const CardComponent = ({ imgUrl, title, description }) => {
@@ -31,6 +32,27 @@ const CardComponent = ({ imgUrl, title, description }) => {
       </div>
     </div>
   );
+};
+
+CardComponent.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  imgUrl: (props, propName, componentName) => {
+    if (
+      !/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
+        props[propName]
+      )
+    ) {
+      return new Error(
+        "Invalid prop `" +
+          propName +
+          "` supplied to" +
+          " `" +
+          componentName +
+          "`. Validation failed."
+      );
+    }
+  },
 };
 
 export default CardComponent;
