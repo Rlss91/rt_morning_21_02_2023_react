@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LifeCycleHooksPage from "./pages/LifeCycleHooksPage";
@@ -12,11 +13,14 @@ const App = () => {
         <Navbar isDark={true} />
       </header>
       <main>
-        {/* <HomePage /> */}
-        {/* <RegisterPage /> */}
-        {/* <LifeCycleHooksPage /> */}
-        {/* <UseMemoPage /> */}
-        <UseCallbackPage />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/registerpage" element={<RegisterPage />} />
+          <Route path="/lifecyclehookspage" element={<LifeCycleHooksPage />} />
+          <Route path="/usecallbackpage" element={<UseCallbackPage />} />
+          <Route path="/usememopage" element={<UseMemoPage />} />
+          <Route path="*" element={<h1>404</h1>} />
+        </Routes>
       </main>
       <footer></footer>
     </div>

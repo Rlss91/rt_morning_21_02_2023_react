@@ -1,4 +1,6 @@
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
+import NavbarLinkPartial from "../../partials/NavbarLinkPartial";
 
 const linksArr = ["Home", "About us", "Contact us", "Register", "Login"];
 
@@ -10,12 +12,30 @@ const Navbar = ({ isDark }) => {
       } navbar-expand-lg bg-body-tertiary`}
     >
       <div className="container-fluid">
-        <a
+        {/* <Link
           className={`navbar-brand ${isDark ? "nav-item-light" : ""}`}
-          href="#"
+          to="/"
+        > */}
+        <NavbarLinkPartial
+          className={`navbar-brand ${isDark ? "nav-item-light" : ""}`}
+          to="/"
+          activeClassName="redText"
         >
           Navbar
-        </a>
+        </NavbarLinkPartial>
+        {/* <NavLink
+          className={({ isActive }) =>
+            [
+              `navbar-brand ${isDark ? "nav-item-light" : ""}`,
+              isActive ? "activeClassName" : null,
+            ]
+              .filter(Boolean)
+              .join(" ")
+          }
+          to="/"
+        >
+          Navbar
+        </NavLink> */}
         <button
           className="navbar-toggler"
           type="button"
