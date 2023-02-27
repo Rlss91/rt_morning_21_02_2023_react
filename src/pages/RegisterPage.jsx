@@ -34,6 +34,7 @@ const RegisterPage = () => {
     }
     setErrorsState(newErrorsState);
   }, [inputsValue]);
+
   const handleBtnClick = () => {
     console.log("clicked");
   };
@@ -42,6 +43,7 @@ const RegisterPage = () => {
     newInputsValue[ev.target.id] = ev.target.value;
     setInputsValue(newInputsValue);
   };
+
   return (
     <Fragment>
       <h1>Register page</h1>
