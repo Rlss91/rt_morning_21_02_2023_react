@@ -23,7 +23,6 @@ const UseMemoPage = () => {
       <h1>Count</h1>
       <h2>{result}</h2>
       <button onClick={handleBtnClick}>+1</button>
-
       <hr />
       <h1>Count 2</h1>
       <h2>{count2}</h2>

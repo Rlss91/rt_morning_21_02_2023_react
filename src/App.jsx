@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LifeCycleHooksPage from "./pages/LifeCycleHooksPage";
 import RegisterPage from "./pages/RegisterPage";
+import UseCallbackPage from "./pages/UseCallbackPage";
 import UseMemoPage from "./pages/UseMemoPage";
 
 const App = () => {
@@ -14,7 +15,8 @@ const App = () => {
         {/* <HomePage /> */}
         {/* <RegisterPage /> */}
         {/* <LifeCycleHooksPage /> */}
-        <UseMemoPage />
+        {/* <UseMemoPage /> */}
+        <UseCallbackPage />
       </main>
       <footer></footer>
     </div>

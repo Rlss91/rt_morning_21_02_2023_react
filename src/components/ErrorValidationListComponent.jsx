@@ -1,10 +1,12 @@
+import { memo } from "react";
 const ErrorValidationListComponent = ({ errorsArr }) => {
+  console.log("ErrorValidationListComponent");
   return (
     <ul className="list-group">
-      {errorsArr.map((item) => (
+      {errorsArr.map((item, index) => (
         <li
           className="list-group-item list-group-item-danger"
-          key={Date.now() + item}
+          key={Date.now() + item + index}
         >
           {item}
         </li>
@@ -13,4 +15,4 @@ const ErrorValidationListComponent = ({ errorsArr }) => {
   );
 };
 
-export default ErrorValidationListComponent;
+export default memo(ErrorValidationListComponent);
