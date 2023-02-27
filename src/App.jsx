@@ -11,8 +11,8 @@ const App = () => {
       </header>
       <main>
         {/* <HomePage /> */}
-        {/* <RegisterPage /> */}
-        <LifeCycleHooksPage />
+        <RegisterPage />
+        {/* <LifeCycleHooksPage /> */}
       </main>
       <footer></footer>
     </div>

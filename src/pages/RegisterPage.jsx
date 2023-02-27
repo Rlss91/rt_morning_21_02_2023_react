@@ -1,11 +1,17 @@
 import { Fragment, useState, useEffect } from "react";
 import ButtonPartial from "../partials/ButtonPartial";
+import ErrorValidationListComponent from "../components/ErrorValidationListComponent";
 
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
     nameInput: "",
     emailInput: "",
     passwordInput: "",
+  });
+  const [errorsState, setErrorsState] = useState({
+    nameInput: [],
+    emailInput: [],
+    passwordInput: [],
   });
   useEffect(() => {
     //on load to elm/component
@@ -17,6 +23,16 @@ const RegisterPage = () => {
   useEffect(() => {
     //each time inputsValue value changed this function will be executed
     console.log("inputsValue changed", inputsValue);
+    let newErrorsState = JSON.parse(JSON.stringify(errorsState));
+    for (const [key, value] of Object.entries(inputsValue)) {
+      // console.log(`${key}: ${value}`);
+      if (!value) {
+        newErrorsState[key] = ["this field should not be empty"];
+      } else {
+        newErrorsState[key] = [];
+      }
+    }
+    setErrorsState(newErrorsState);
   }, [inputsValue]);
   const handleBtnClick = () => {
     console.log("clicked");
@@ -58,6 +74,7 @@ const RegisterPage = () => {
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
         </div>
+        <ErrorValidationListComponent errorsArr={errorsState.emailInput} />
       </div>
       <div className="mb-3">
         <label htmlFor="passwordInput" className="form-label">
