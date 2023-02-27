@@ -1,3 +1,4 @@
+import { memo } from "react";
 import PropTypes from "prop-types";
 
 const buttonPartialOptions = {
@@ -37,4 +38,4 @@ ButtonPartial.defaultProps = {
 };
 
 export { buttonPartialOptions };
-export default ButtonPartial;
+export default memo(ButtonPartial);
