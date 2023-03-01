@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import ButtonPartial from "../partials/ButtonPartial";
 import ErrorValidationListComponent from "../components/ErrorValidationListComponent";
+import validateRegisterSchema from "../validation/registerValidation";
 
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
@@ -37,6 +38,8 @@ const RegisterPage = () => {
 
   const handleBtnClick = () => {
     console.log("clicked");
+    const validatedValues = validateRegisterSchema(inputsValue);
+    console.log("vv", validatedValues);
   };
   const handleInputChange = (ev) => {
     const newInputsValue = JSON.parse(JSON.stringify(inputsValue));

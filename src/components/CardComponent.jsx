@@ -1,8 +1,8 @@
+import { memo, useCallback } from "react";
 import PropTypes from "prop-types";
 import ButtonPartial, { buttonPartialOptions } from "../partials/ButtonPartial";
 
-const CardComponent = ({ imgUrl, title, description }) => {
-  /*
+/*
     props = {
    imgUrl :
     "https://images.freeimages.com/images/large-previews/a3e/wild-horse-1334844.jpg",
@@ -10,10 +10,16 @@ const CardComponent = ({ imgUrl, title, description }) => {
    description : "a0936y4j-0yaos-mgpokgrma;lkfmg;lae,f;lawef"
     }
   */
-  // const imgUrl =
-  //   "https://images.freeimages.com/images/large-previews/a3e/wild-horse-1334844.jpg";
-  // const title = "Horse";
-  // const description = "a0936y4j-0yaos-mgpokgrma;lkfmg;lae,f;lawef";
+// const imgUrl =
+//   "https://images.freeimages.com/images/large-previews/a3e/wild-horse-1334844.jpg";
+// const title = "Horse";
+// const description = "a0936y4j-0yaos-mgpokgrma;lkfmg;lae,f;lawef";
+
+const CardComponent = ({ id, imgUrl, title, description, onDelete }) => {
+  const handleDeleteBtnClick = useCallback(() => {
+    console.log("delete from child clicked");
+    onDelete(id);
+  }, [id]);
   return (
     <div className="card">
       <img src={imgUrl} className="card-img-top" alt="..." />
@@ -23,7 +29,14 @@ const CardComponent = ({ imgUrl, title, description }) => {
         {/* <a href="#" className="btn btn-primary">
           Go somewhere
         </a> */}
-        <ButtonPartial icon="bi-chat-left-heart-fill">click me</ButtonPartial>
+        <ButtonPartial icon="bi-chat-left-heart-fill">Click me</ButtonPartial>
+        <ButtonPartial
+          icon="bi-trash2-fill"
+          btnOption={buttonPartialOptions.danger}
+          onClick={handleDeleteBtnClick}
+        >
+          Delete me
+        </ButtonPartial>
       </div>
     </div>
   );
@@ -48,6 +61,7 @@ CardComponent.propTypes = {
       );
     }
   },
+  onDelete: PropTypes.func,
 };
 
-export default CardComponent;
+export default memo(CardComponent);
