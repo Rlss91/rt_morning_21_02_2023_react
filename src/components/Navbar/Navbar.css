@@ -11,6 +11,7 @@
   color: white !important;
 } */
 
-.redText {
-  color: red !important;
+.active {
+  color: rgb(123, 205, 255) !important;
+  font-weight: bold !important;
 }

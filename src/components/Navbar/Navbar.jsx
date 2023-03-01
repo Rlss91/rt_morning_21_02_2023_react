@@ -1,8 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import NavbarLinkPartial from "../../partials/NavbarLinkPartial";
+import LinkClass from "../../classes/LinkClass";
 
-const linksArr = ["Home", "About us", "Contact us", "Register", "Login"];
+const linksArr = [
+  new LinkClass("/", "Home"),
+  new LinkClass("/aboutuspage", "About us"),
+  new LinkClass("/contactuspage", "Contact us"),
+  new LinkClass("/registerpage", "Register"),
+  new LinkClass("/loginpage", "Login"),
+];
 
 const Navbar = ({ isDark }) => {
   return (
@@ -12,10 +18,6 @@ const Navbar = ({ isDark }) => {
       } navbar-expand-lg bg-body-tertiary`}
     >
       <div className="container-fluid">
-        {/* <Link
-          className={`navbar-brand ${isDark ? "nav-item-light" : ""}`}
-          to="/"
-        > */}
         <NavbarLinkPartial
           className={`navbar-brand ${isDark ? "nav-item-light" : ""}`}
           to="/"
@@ -23,19 +25,6 @@ const Navbar = ({ isDark }) => {
         >
           Navbar
         </NavbarLinkPartial>
-        {/* <NavLink
-          className={({ isActive }) =>
-            [
-              `navbar-brand ${isDark ? "nav-item-light" : ""}`,
-              isActive ? "activeClassName" : null,
-            ]
-              .filter(Boolean)
-              .join(" ")
-          }
-          to="/"
-        >
-          Navbar
-        </NavLink> */}
         <button
           className="navbar-toggler"
           type="button"
@@ -52,12 +41,13 @@ const Navbar = ({ isDark }) => {
             {linksArr.map((item) => {
               return (
                 <li className="nav-item" key={item + Date.now()}>
-                  <a
+                  <NavbarLinkPartial
                     className={`nav-link ${isDark ? "nav-item-light" : ""}`}
-                    href="#"
+                    activeClassName="active"
+                    to={item.to}
                   >
-                    {item}
-                  </a>
+                    {item.children}
+                  </NavbarLinkPartial>
                 </li>
               );
             })}
