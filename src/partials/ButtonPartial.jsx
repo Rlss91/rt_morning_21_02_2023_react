@@ -15,12 +15,12 @@ const buttonPartialOptions = {
 
 // parent: <ButtonPartial btnOption="">click me</ButtonPartial>
 
-const ButtonPartial = ({ btnOption, icon, children }) => {
+const ButtonPartial = ({ btnOption, icon, children, onClick }) => {
   console.log("ButtonPartial rendered");
   // const defaultBtnOption = buttonPartialOptions.primary;
   return (
     // <button className={`btn btn-${btnOption ? btnOption : defaultBtnOption}`}>
-    <button className={`btn btn-${btnOption}`}>
+    <button className={`btn btn-${btnOption}`} onClick={onClick}>
       {icon && <i className={`bi ${icon}`}></i>}
       {children}
     </button>
@@ -31,6 +31,7 @@ ButtonPartial.propTypes = {
   btnOption: PropTypes.oneOf(Object.values(buttonPartialOptions)), //convert object values to array of values
   icon: PropTypes.string,
   children: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 ButtonPartial.defaultProps = {

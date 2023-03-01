@@ -40,7 +40,7 @@ const Navbar = ({ isDark }) => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {linksArr.map((item) => {
               return (
-                <li className="nav-item" key={item + Date.now()}>
+                <li className="nav-item" key={item.children + Date.now()}>
                   <NavbarLinkPartial
                     className={`nav-link ${isDark ? "nav-item-light" : ""}`}
                     activeClassName="active"

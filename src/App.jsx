@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LifeCycleHooksPage from "./pages/LifeCycleHooksPage";
 import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 import UseCallbackPage from "./pages/UseCallbackPage";
 import UseMemoPage from "./pages/UseMemoPage";
 
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/registerpage" element={<RegisterPage />} />
+          <Route path="/loginpage" element={<LoginPage />} />
           <Route path="/lifecyclehookspage" element={<LifeCycleHooksPage />} />
           <Route path="/usecallbackpage" element={<UseCallbackPage />} />
           <Route path="/usememopage" element={<UseMemoPage />} />

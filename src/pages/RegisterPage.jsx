@@ -100,10 +100,7 @@ const RegisterPage = () => {
           Check me out
         </label>
       </div>
-      <button className="btn btn-primary" onClick={handleBtnClick}>
-        Submit
-      </button>
-      <ButtonPartial>click me</ButtonPartial>
+      <ButtonPartial onClick={handleBtnClick}>click me</ButtonPartial>
     </Fragment>
   );
 };
