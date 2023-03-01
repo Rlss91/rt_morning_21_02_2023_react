@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import UseCallbackPage from "./pages/UseCallbackPage";
 import UseMemoPage from "./pages/UseMemoPage";
+import ItemPage from "./pages/ItemPage";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/lifecyclehookspage" element={<LifeCycleHooksPage />} />
           <Route path="/usecallbackpage" element={<UseCallbackPage />} />
           <Route path="/usememopage" element={<UseMemoPage />} />
+          <Route path="/item/:id" element={<ItemPage />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </main>
