@@ -15,7 +15,7 @@ const App = () => {
       <header>
         <Navbar isDark={true} />
       </header>
-      <main>
+      <main className="mt-2">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/statichomepage" element={<StaticHomePage />} />
