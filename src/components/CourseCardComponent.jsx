@@ -1,12 +1,18 @@
 import PropTypes from "prop-types";
+import ButtonPartial from "../partials/ButtonPartial";
 
 const CourseCardComponent = ({
+  id,
   courseName,
   lecturerName,
   description,
   category,
   price,
+  onAddToWishList,
 }) => {
+  const handleAddToWishListClick = () => {
+    onAddToWishList(id);
+  };
   return (
     <div className="card">
       <div className="card-body">
@@ -22,18 +28,16 @@ const CourseCardComponent = ({
         <li className="list-group-item">Private lesson: {price.privetPrice}</li>
       </ul>
       <div className="card-body">
-        <a href="#" className="card-link">
-          Card link
-        </a>
-        <a href="#" className="card-link">
-          Another link
-        </a>
+        <ButtonPartial icon="bi-bag-heart" onClick={handleAddToWishListClick}>
+          Add to wish list
+        </ButtonPartial>
       </div>
     </div>
   );
 };
 
 CourseCardComponent.propTypes = {
+  id: PropTypes.string,
   courseName: PropTypes.string.isRequired,
   lecturerName: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -42,6 +46,7 @@ CourseCardComponent.propTypes = {
     coursePrice: PropTypes.number.isRequired,
     privetPrice: PropTypes.number.isRequired,
   }).isRequired,
+  onAddToWishList: PropTypes.func,
 };
 
 export default CourseCardComponent;

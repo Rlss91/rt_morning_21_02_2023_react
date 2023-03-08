@@ -14,17 +14,30 @@ const HomePage = () => {
         console.log(err);
       });
   }, []);
+
+  const handleAddToWishListClick = async (id) => {
+    // console.log(id);
+    try {
+      await axios.post("/users/wish", { productID: id });
+      console.log("added");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   if (courseArr) {
     return (
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {courseArr.map((item) => (
           <div className="col" key={item._id + Date.now()}>
             <CourseCardComponent
+              id={item._id}
               courseName={item.couseName}
               lecturerName={item.lecturer}
               description={item.description}
               category={item.category}
               price={item.price}
+              onAddToWishList={handleAddToWishListClick}
             />
           </div>
         ))}
