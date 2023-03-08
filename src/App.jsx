@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import HomePage from "./pages/HomePage";
+import StaticHomePage from "./pages/StaticHomePage";
 import LifeCycleHooksPage from "./pages/LifeCycleHooksPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -16,7 +16,7 @@ const App = () => {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/statichomepage" element={<StaticHomePage />} />
           <Route path="/registerpage" element={<RegisterPage />} />
           <Route path="/loginpage" element={<LoginPage />} />
           <Route path="/lifecyclehookspage" element={<LifeCycleHooksPage />} />

@@ -32,7 +32,7 @@ let initialArray = [
   },
 ];
 
-const HomePage = () => {
+const StaticHomePage = () => {
   const [arrayToDisplay, setArrayToDisplay] = useState(initialArray);
   const deleteItemFromArray = (id) => {
     console.log("delete from father");
@@ -62,4 +62,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default StaticHomePage;
