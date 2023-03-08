@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import UseCallbackPage from "./pages/UseCallbackPage";
 import UseMemoPage from "./pages/UseMemoPage";
 import ItemPage from "./pages/ItemPage";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       </header>
       <main>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/statichomepage" element={<StaticHomePage />} />
           <Route path="/registerpage" element={<RegisterPage />} />
           <Route path="/loginpage" element={<LoginPage />} />
