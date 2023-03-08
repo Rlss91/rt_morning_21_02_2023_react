@@ -1,111 +1,93 @@
-import { Fragment, useState, useEffect } from "react";
-import ButtonPartial from "../partials/ButtonPartial";
-import ErrorValidationListComponent from "../components/ErrorValidationListComponent";
-import validateRegisterSchema from "../validation/registerValidation";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
-  const [inputsValue, setInputsValue] = useState({
-    nameInput: "",
-    emailInput: "",
-    passwordInput: "",
+  const [userInput, setUserInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   });
-  const [errorsState, setErrorsState] = useState({
-    nameInput: [],
-    emailInput: [],
-    passwordInput: [],
-  });
-  useEffect(() => {
-    //on load to elm/component
-    return () => {
-      //when elm destroyed
-      console.log("elm done");
-    };
-  }, []);
-  useEffect(() => {
-    //each time inputsValue value changed this function will be executed
-    // console.log("inputsValue changed", inputsValue);
-    let newErrorsState = JSON.parse(JSON.stringify(errorsState));
-    for (const [key, value] of Object.entries(inputsValue)) {
-      // console.log(`${key}: ${value}`);
-      if (!value) {
-        newErrorsState[key] = ["this field should not be empty"];
-      } else {
-        newErrorsState[key] = [];
-      }
-    }
-    setErrorsState(newErrorsState);
-  }, [inputsValue]);
+  const navigate = useNavigate();
 
-  const handleBtnClick = () => {
-    console.log("clicked");
-    const validatedValues = validateRegisterSchema(inputsValue);
-    console.log("vv", validatedValues);
+  const handleUserInputChange = (e) => {
+    let newUserInput = JSON.parse(JSON.stringify(userInput));
+    newUserInput[e.target.id] = e.target.value;
+    setUserInput(newUserInput);
   };
-  const handleInputChange = (ev) => {
-    const newInputsValue = JSON.parse(JSON.stringify(inputsValue));
-    newInputsValue[ev.target.id] = ev.target.value;
-    setInputsValue(newInputsValue);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("/register", {
+        fisrtName: userInput.firstName,
+        lastName: userInput.lastName,
+        email: userInput.email,
+        password: userInput.password,
+      });
+      navigate("/loginpage");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <Fragment>
-      <h1>Register page</h1>
+    <form onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label htmlFor="nameInput" className="form-label">
-          Name
+        <label htmlFor="firstName" className="form-label">
+          First name
         </label>
         <input
           type="text"
           className="form-control"
-          id="nameInput"
-          aria-describedby="emailHelp"
-          value={inputsValue.nameInput}
-          onChange={handleInputChange}
-          placeholder="Name"
+          id="firstName"
+          value={userInput.firstName}
+          onChange={handleUserInputChange}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="emailInput" className="form-label">
+        <label htmlFor="lastName" className="form-label">
+          Last name
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="lastName"
+          value={userInput.lastName}
+          onChange={handleUserInputChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">
           Email address
         </label>
         <input
           type="email"
           className="form-control"
-          id="emailInput"
+          id="email"
           aria-describedby="emailHelp"
-          value={inputsValue.emailInput}
-          onChange={handleInputChange}
+          value={userInput.email}
+          onChange={handleUserInputChange}
         />
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
         </div>
-        <ErrorValidationListComponent errorsArr={errorsState.emailInput} />
       </div>
       <div className="mb-3">
-        <label htmlFor="passwordInput" className="form-label">
+        <label htmlFor="password" className="form-label">
           Password
         </label>
         <input
           type="password"
           className="form-control"
-          id="passwordInput"
-          value={inputsValue.passwordInput}
-          onChange={handleInputChange}
+          id="password"
+          value={userInput.password}
+          onChange={handleUserInputChange}
         />
       </div>
-      <div className="mb-3 form-check">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="exampleCheck1"
-        />
-        <label className="form-check-label" htmlFor="exampleCheck1">
-          Check me out
-        </label>
-      </div>
-      <ButtonPartial onClick={handleBtnClick}>click me</ButtonPartial>
-    </Fragment>
+      <button className="btn btn-primary">Submit</button>
+    </form>
   );
 };
-
 export default RegisterPage;

@@ -6,7 +6,7 @@ const HomePage = () => {
   const [courseArr, setCourseArr] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3030/api/1")
+      .get("/1")
       .then(({ data }) => {
         setCourseArr(data);
       })
