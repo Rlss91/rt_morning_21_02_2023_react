@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginPage = () => {
   const [userInputs, setUserInputs] = useState({
@@ -14,9 +15,19 @@ const LoginPage = () => {
     newInputsValue[ev.target.id] = ev.target.value;
     setUserInputs(newInputsValue);
   };
-  const handleSubmit = () => {
-    // everything is good
-    navigate("/");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("/login", {
+        email: userInputs.emailInput,
+        password: userInputs.passwordInput,
+      });
+      console.log(data);
+      localStorage.setItem("token", data.userToken);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
