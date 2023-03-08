@@ -10,16 +10,16 @@ const CourseCardComponent = ({
   return (
     <div className="card" style={{ width: "18rem" }}>
       <div className="card-body">
-        <h5 className="card-title">Course name</h5>
-        <h6 className="card-subtitle mb-2 text-muted">Lecturer name</h6>
-        <p className="card-text">Description</p>
+        <h5 className="card-title">{courseName}</h5>
+        <h6 className="card-subtitle mb-2 text-muted">{lecturerName}</h6>
+        <p className="card-text">{description}</p>
         <p className="card-text">
-          <small className="text-muted">Category</small>
+          <small className="text-muted">{category}</small>
         </p>
       </div>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item">Price 1</li>
-        <li className="list-group-item">Price 2</li>
+        <li className="list-group-item">In class: {price.coursePrice}</li>
+        <li className="list-group-item">Private lesson: {price.privetPrice}</li>
       </ul>
       <div className="card-body">
         <a href="#" className="card-link">
