@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import validateLoginSchema from "../validation/loginValidation";
+import AlertPartial from "../partials/AlertPartial";
 
 const LoginPage = () => {
   const [userInputs, setUserInputs] = useState({
     emailInput: "",
     passwordInput: "",
   });
-
+  const [errorState, setErrorState] = useState(null);
   const navigate = useNavigate();
 
   const handleInputChange = (ev) => {
@@ -18,13 +20,19 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/login", {
-        email: userInputs.emailInput,
-        password: userInputs.passwordInput,
-      });
-      console.log(data);
-      localStorage.setItem("token", data.userToken);
-      navigate("/");
+      const errors = validateLoginSchema(userInputs);
+      if (errors) {
+        console.log(errors);
+        setErrorState(errors);
+      } else {
+        const { data } = await axios.post("/login", {
+          email: userInputs.emailInput,
+          password: userInputs.passwordInput,
+        });
+        console.log(data);
+        localStorage.setItem("token", data.userToken);
+        navigate("/");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -46,6 +54,13 @@ const LoginPage = () => {
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
         </div>
+        {errorState && errorState.email && (
+          <AlertPartial>
+            {errorState.email.map((item) => (
+              <div>{item}</div>
+            ))}
+          </AlertPartial>
+        )}
       </div>
       <div className="mb-3">
         <label htmlFor="passwordInput" className="form-label">
@@ -58,6 +73,13 @@ const LoginPage = () => {
           value={userInputs.passwordInput}
           onChange={handleInputChange}
         />
+        {errorState && errorState.password && (
+          <AlertPartial>
+            {errorState.password.map((item) => (
+              <div>{item}</div>
+            ))}
+          </AlertPartial>
+        )}
       </div>
       <button type="submit" className="btn btn-primary">
         Submit
