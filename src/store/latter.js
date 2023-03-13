@@ -15,6 +15,9 @@ const strSlice = createSlice({
     addA(state) {
       state.str = state.str + "a";
     },
+    addStr(state, action) {
+      state.str = state.str + action.payload;
+    },
   },
 });
 

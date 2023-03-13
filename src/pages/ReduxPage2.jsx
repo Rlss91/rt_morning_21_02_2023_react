@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ReduxPage2 = () => {
   const dispatch = useDispatch();
   const handleAddA = () => {
-    dispatch(strActions.addA());
+    dispatch(strActions.addStr("123123213"));
   };
   return (
     <Fragment>
