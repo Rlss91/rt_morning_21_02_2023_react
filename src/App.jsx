@@ -10,6 +10,7 @@ import UseCallbackPage from "./pages/UseCallbackPage";
 import UseMemoPage from "./pages/UseMemoPage";
 import ItemPage from "./pages/ItemPage";
 import HomePage from "./pages/HomePage";
+import ReduxPage from "./pages/ReduxPage";
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
       </header>
       <main className="mt-2">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/" element={<ReduxPage />} />
           <Route path="/statichomepage" element={<StaticHomePage />} />
           <Route path="/registerpage" element={<RegisterPage />} />
           <Route path="/loginpage" element={<LoginPage />} />
