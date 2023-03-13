@@ -3,13 +3,13 @@ import Joi from "joi";
 import validate from "./validate";
 
 const loginSchema = Joi.object({
-  email: Joi.string()
+  emailInput: Joi.string()
     .email({ tlds: { allow: false } })
     .min(5)
     .max(250)
     .trim()
     .required(),
-  password: Joi.string()
+  passwordInput: Joi.string()
     .pattern(
       new RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{0,}$")
     )

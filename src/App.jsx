@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar/Navbar";
 import StaticHomePage from "./pages/StaticHomePage";
 import LifeCycleHooksPage from "./pages/LifeCycleHooksPage";
@@ -12,6 +14,7 @@ import HomePage from "./pages/HomePage";
 const App = () => {
   return (
     <div className="container">
+      <ToastContainer />
       <header>
         <Navbar isDark={true} />
       </header>

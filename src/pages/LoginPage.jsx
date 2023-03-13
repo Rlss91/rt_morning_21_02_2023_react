@@ -54,10 +54,10 @@ const LoginPage = () => {
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
         </div>
-        {errorState && errorState.email && (
+        {errorState && errorState.emailInput && (
           <AlertPartial>
-            {errorState.email.map((item) => (
-              <div>{item}</div>
+            {errorState.emailInput.map((item) => (
+              <div key={item + "email"}>{item}</div>
             ))}
           </AlertPartial>
         )}
@@ -73,10 +73,10 @@ const LoginPage = () => {
           value={userInputs.passwordInput}
           onChange={handleInputChange}
         />
-        {errorState && errorState.password && (
+        {errorState && errorState.passwordInput && (
           <AlertPartial>
-            {errorState.password.map((item) => (
-              <div>{item}</div>
+            {errorState.passwordInput.map((item) => (
+              <div key={item + "pass"}>{item}</div>
             ))}
           </AlertPartial>
         )}

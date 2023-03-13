@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CourseCardComponent from "../components/CourseCardComponent";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const [courseArr, setCourseArr] = useState(null);
@@ -19,7 +20,16 @@ const HomePage = () => {
     // console.log(id);
     try {
       await axios.post("/users/wish", { productID: id });
-      console.log("added");
+      toast.error("🦄 Wow so easy!", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (err) {
       console.log(err);
     }
