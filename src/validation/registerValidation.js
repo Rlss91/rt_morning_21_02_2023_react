@@ -3,14 +3,15 @@ import Joi from "joi";
 import validate from "./validate";
 
 const registerSchema = Joi.object({
-  nameInput: Joi.string().trim().min(2).max(250).required(),
-  emailInput: Joi.string()
+  firstName: Joi.string().trim().min(2).max(250).required(),
+  lastName: Joi.string().trim().min(2).max(250).required(),
+  email: Joi.string()
     .email({ tlds: { allow: false } })
     .min(5)
     .max(250)
     .trim()
     .required(),
-  passwordInput: Joi.string()
+  password: Joi.string()
     .pattern(
       new RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{0,}$")
     )

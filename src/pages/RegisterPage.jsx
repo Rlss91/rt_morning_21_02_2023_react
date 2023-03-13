@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import validateRegisterSchema from "../validation/registerValidation";
+import AlertPartial from "../partials/AlertPartial";
 
 const RegisterPage = () => {
   const [userInput, setUserInput] = useState({
@@ -9,6 +11,7 @@ const RegisterPage = () => {
     email: "",
     password: "",
   });
+  const [errorState, setErrorState] = useState(null);
   const navigate = useNavigate();
 
   const handleUserInputChange = (e) => {
@@ -20,13 +23,19 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/register", {
-        fisrtName: userInput.firstName,
-        lastName: userInput.lastName,
-        email: userInput.email,
-        password: userInput.password,
-      });
-      navigate("/loginpage");
+      const errors = validateRegisterSchema(userInput);
+      if (errors) {
+        console.log(errors);
+        setErrorState(errors);
+      } else {
+        await axios.post("/register", {
+          fisrtName: userInput.firstName,
+          lastName: userInput.lastName,
+          email: userInput.email,
+          password: userInput.password,
+        });
+        navigate("/loginpage");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -45,6 +54,9 @@ const RegisterPage = () => {
           value={userInput.firstName}
           onChange={handleUserInputChange}
         />
+        {errorState && errorState.firstName && (
+          <AlertPartial>{errorState.firstName.join("<br>")}</AlertPartial>
+        )}
       </div>
       <div className="mb-3">
         <label htmlFor="lastName" className="form-label">
@@ -85,6 +97,13 @@ const RegisterPage = () => {
           value={userInput.password}
           onChange={handleUserInputChange}
         />
+        {errorState && errorState.password && (
+          <AlertPartial>
+            {errorState.password.map((item) => (
+              <div>{item}</div>
+            ))}
+          </AlertPartial>
+        )}
       </div>
       <button className="btn btn-primary">Submit</button>
     </form>
