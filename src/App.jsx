@@ -11,6 +11,8 @@ import UseMemoPage from "./pages/UseMemoPage";
 import ItemPage from "./pages/ItemPage";
 import HomePage from "./pages/HomePage";
 import ReduxPage from "./pages/ReduxPage";
+import ReduxPage2 from "./pages/ReduxPage2";
+import ReduxPage3 from "./pages/ReduxPage3";
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
           <Route path="/usecallbackpage" element={<UseCallbackPage />} />
           <Route path="/usememopage" element={<UseMemoPage />} />
           <Route path="/item/:id" element={<ItemPage />} />
+          <Route path="/redux2" element={<ReduxPage2 />} />
+          <Route path="/redux3" element={<ReduxPage3 />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </main>
