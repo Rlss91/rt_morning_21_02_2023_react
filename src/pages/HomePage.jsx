@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import CourseCardComponent from "../components/CourseCardComponent";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
+  const isAdmin = useSelector((state) => state.authStore.userInfo.isAdmin);
   const [courseArr, setCourseArr] = useState(null);
   useEffect(() => {
     axios
@@ -35,6 +37,21 @@ const HomePage = () => {
     }
   };
 
+  const handleDeleteClick = async (id) => {
+    try {
+      // await axios.delete(`/admin/deleteCourse/${productID}`); // params
+      await axios.delete("/admin/deleteCourse", { data: { productID: id } }); // delete
+      setCourseArr((state) => {
+        if (!state) {
+          return state;
+        }
+        return state.filter((item) => item._id != id);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   if (courseArr) {
     return (
       <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -48,6 +65,8 @@ const HomePage = () => {
               category={item.category}
               price={item.price}
               onAddToWishList={handleAddToWishListClick}
+              onDelete={handleDeleteClick}
+              isAdmin={isAdmin}
             />
           </div>
         ))}

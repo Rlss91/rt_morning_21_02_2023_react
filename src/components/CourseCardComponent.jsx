@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import ButtonPartial from "../partials/ButtonPartial";
+import ButtonPartial, { buttonPartialOptions } from "../partials/ButtonPartial";
+import { Fragment } from "react";
 
 const CourseCardComponent = ({
   id,
@@ -8,10 +9,19 @@ const CourseCardComponent = ({
   description,
   category,
   price,
+  isAdmin,
   onAddToWishList,
+  onDelete,
+  onEdit,
 }) => {
   const handleAddToWishListClick = () => {
     onAddToWishList(id);
+  };
+  const handleDeleteClick = () => {
+    onDelete(id);
+  };
+  const handleEditClick = () => {
+    onEdit(id);
   };
   return (
     <div className="card">
@@ -31,6 +41,24 @@ const CourseCardComponent = ({
         <ButtonPartial icon="bi-bag-heart" onClick={handleAddToWishListClick}>
           Add to wish list
         </ButtonPartial>
+        {isAdmin && (
+          <Fragment>
+            <ButtonPartial
+              icon="bi-pen"
+              btnOption={buttonPartialOptions.warning}
+              onClick={handleEditClick}
+            >
+              Edit
+            </ButtonPartial>
+            <ButtonPartial
+              icon="bi-trash"
+              btnOption={buttonPartialOptions.danger}
+              onClick={handleDeleteClick}
+            >
+              Delete
+            </ButtonPartial>
+          </Fragment>
+        )}
       </div>
     </div>
   );
@@ -46,7 +74,13 @@ CourseCardComponent.propTypes = {
     coursePrice: PropTypes.number.isRequired,
     privetPrice: PropTypes.number.isRequired,
   }).isRequired,
+  isAdmin: PropTypes.bool,
   onAddToWishList: PropTypes.func,
+  onDelete: PropTypes.func,
+  onEdit: PropTypes.func,
+};
+CourseCardComponent.defaultProps = {
+  isAdmin: false,
 };
 
 export default CourseCardComponent;

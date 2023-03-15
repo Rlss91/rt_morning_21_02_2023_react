@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import validateLoginSchema from "../validation/loginValidation";
 import AlertPartial from "../partials/AlertPartial";
-import { authActions } from "../store/auth";
 import useLogin from "../hooks/useLogin";
 
 const LoginPage = () => {
@@ -33,9 +31,7 @@ const LoginPage = () => {
           email: userInputs.emailInput,
           password: userInputs.passwordInput,
         });
-        console.log(data);
         localStorage.setItem("token", data.userToken);
-        // useDispatch(authActions.login())
         loginFunc();
         navigate("/");
       }
