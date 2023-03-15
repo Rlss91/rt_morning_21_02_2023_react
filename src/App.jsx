@@ -15,6 +15,7 @@ import HomePage from "./pages/HomePage";
 import ReduxPage2 from "./pages/ReduxPage2";
 import ReduxPage3 from "./pages/ReduxPage3";
 import useLogin from "./hooks/useLogin";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   const loginFunc = useLogin();
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/statichomepage" element={<StaticHomePage />} />
           <Route path="/registerpage" element={<RegisterPage />} />
           <Route path="/loginpage" element={<LoginPage />} />
+          <Route path="/profilepage" element={<ProfilePage />} />
           <Route path="/lifecyclehookspage" element={<LifeCycleHooksPage />} />
           <Route path="/usecallbackpage" element={<UseCallbackPage />} />
           <Route path="/usememopage" element={<UseMemoPage />} />
