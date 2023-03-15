@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
 import "./Navbar.css";
 import NavbarLinkPartial from "../../partials/NavbarLinkPartial";
 import LinkClass from "../../classes/LinkClass";
@@ -19,6 +20,11 @@ const authLinks = [
 const Navbar = ({ isDark }) => {
   const isLoggedIn = useSelector((state) => state.authStore.isLoggedIn);
   const userInfo = useSelector((state) => state.authStore.userInfo);
+  const dispatch = useDispatch();
+  const handleLogoutClick = () => {
+    // console.log("handleLogoutClick");
+    dispatch(authActions.logout());
+  };
   return (
     <nav
       className={`navbar ${
@@ -96,7 +102,8 @@ const Navbar = ({ isDark }) => {
                   <NavBarLinkComponent
                     key={"/logout" + Date.now()}
                     isDark={isDark}
-                    to="/logout"
+                    to="/loginpage"
+                    onClick={handleLogoutClick}
                   >
                     Logout
                   </NavBarLinkComponent>,

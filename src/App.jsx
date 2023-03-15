@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+// import axios from "axios";
+// import { useDispatch } from "react-redux";
 
 import Navbar from "./components/Navbar/Navbar";
 import StaticHomePage from "./pages/StaticHomePage";
@@ -17,22 +17,23 @@ import HomePage from "./pages/HomePage";
 // import ReduxPage from "./pages/ReduxPage";
 import ReduxPage2 from "./pages/ReduxPage2";
 import ReduxPage3 from "./pages/ReduxPage3";
-import { authActions } from "./store/auth";
+import useLogin from "./hooks/useLogin";
+// import { authActions } from "./store/auth";
 
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const loginFunc = useLogin();
   useEffect(() => {
-    setTimeout(() => {
-      axios
-        .get("/users/getuserinfo")
-        .then(({ data }) => {
-          dispatch(authActions.login(data));
-        })
-        .catch((err) => {
-          console.log("err", err);
-          // console.log("err", err.response.data);
-        });
-    }, 1000);
+    loginFunc();
+    // axios
+    //   .get("/users/getuserinfo")
+    //   .then(({ data }) => {
+    //     dispatch(authActions.login(data));
+    //   })
+    //   .catch((err) => {
+    //     console.log("err", err);
+    //     // console.log("err", err.response.data);
+    //   });
   }, []);
   return (
     <div className="container">

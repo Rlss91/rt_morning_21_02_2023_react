@@ -13,6 +13,10 @@ const authSlice = createSlice({
       state.userInfo = actions.payload;
       state.isLoggedIn = true;
     },
+    logout(state) {
+      localStorage.clear();
+      return initialState;
+    },
   },
 });
 
