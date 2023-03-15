@@ -5,6 +5,10 @@ import { authActions } from "../store/auth";
 const useLogin = () => {
   const dispatch = useDispatch();
   return () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return;
+    }
     axios
       .get("/users/getuserinfo")
       .then(({ data }) => {
@@ -12,7 +16,6 @@ const useLogin = () => {
       })
       .catch((err) => {
         console.log("err", err);
-        // console.log("err", err.response.data);
       });
   };
 };
