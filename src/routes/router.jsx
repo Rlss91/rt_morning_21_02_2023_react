@@ -12,11 +12,12 @@ import ItemPage from "../pages/ItemPage";
 import ReduxPage2 from "../pages/ReduxPage2";
 import ReduxPage3 from "../pages/ReduxPage3";
 import ProtectedRoute from "./ProtectedRoute";
+import ROUTES from "./routes";
 
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path={ROUTES.HOME} element={<HomePage />} />
       {/* <Route path="/" element={<ReduxPage />} /> */}
       <Route path="/statichomepage" element={<StaticHomePage />} />
       <Route path="/registerpage" element={<RegisterPage />} />
