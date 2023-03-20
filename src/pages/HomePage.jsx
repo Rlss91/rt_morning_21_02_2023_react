@@ -4,10 +4,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useQueryParams from "../hooks/useQueryParams";
 
 const HomePage = () => {
   const isAdmin = useSelector((state) => state.authStore.userInfo.isAdmin);
   const [courseArr, setCourseArr] = useState(null);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // console.log("searchParams", searchParams);
+  console.log(useQueryParams());
   const navigate = useNavigate();
   useEffect(() => {
     axios
