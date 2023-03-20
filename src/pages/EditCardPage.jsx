@@ -1,15 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ButtonPartial, { buttonPartialOptions } from "../partials/ButtonPartial";
+import validateIdSchema from "../validation/editCardValidation";
+import ROUTES from "../routes/routes";
 
 const EditCardPage = () => {
   const [courseData, setCourseData] = useState(null);
   //   const [searchParams, setSearchParams] = useSearchParams();
   //   const courseId = searchParams.get("id");
   const { courseId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (validateIdSchema({ id: courseId })) {
+      navigate(ROUTES.HOME);
+      return;
+    }
+
     axios
       .get("/admin/getCourse/" + courseId)
       .then(({ data }) => {
@@ -18,7 +26,7 @@ const EditCardPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [courseId]);
 
   const handleInputChange = (ev) => {
     const newcourseData = JSON.parse(JSON.stringify(courseData));
@@ -43,12 +51,15 @@ const EditCardPage = () => {
     e.preventDefault();
     try {
       console.log(courseData);
-      await axios.post("/admin/editCourse/", {
+      await axios.put("/admin/editCourse/", {
         productID: courseData._id,
-        //TODO FIX BUG IN BACKEND, SHOULD BE CALL FOR UPDATING MORE THAN COLUMN!
+        couseName: courseData.couseName,
+        category: courseData.category,
+        lecturer: courseData.lecturer,
+        description: courseData.description,
       });
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
     }
   };
   if (courseData) {
@@ -93,6 +104,16 @@ const EditCardPage = () => {
             />
           </div>
 
+          <div className="form-group col-md-6">
+            <label>Description:</label>
+            <input
+              type="text"
+              className="form-control mb-3"
+              id="description"
+              value={courseData.description}
+              onChange={handleInputChange}
+            />
+          </div>
           <div className="form-group col-md-6">
             <label>Description:</label>
             <input

@@ -3,10 +3,12 @@ import CourseCardComponent from "../components/CourseCardComponent";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const isAdmin = useSelector((state) => state.authStore.userInfo.isAdmin);
   const [courseArr, setCourseArr] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get("/1")
@@ -52,6 +54,10 @@ const HomePage = () => {
     }
   };
 
+  const handleEditClick = (id) => {
+    navigate(`/editcard/${id}`);
+  };
+
   if (courseArr) {
     return (
       <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -66,6 +72,7 @@ const HomePage = () => {
               price={item.price}
               onAddToWishList={handleAddToWishListClick}
               onDelete={handleDeleteClick}
+              onEdit={handleEditClick}
               isAdmin={isAdmin}
             />
           </div>
