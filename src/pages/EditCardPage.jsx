@@ -2,13 +2,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ButtonPartial, { buttonPartialOptions } from "../partials/ButtonPartial";
-import validateIdSchema from "../validation/editCardValidation";
+import {
+  validateIdSchema,
+  validateEditCardSchema,
+} from "../validation/editCardValidation";
 import ROUTES from "../routes/routes";
+import AlertPartial from "../partials/AlertPartial";
 
 const EditCardPage = () => {
   const [courseData, setCourseData] = useState(null);
-  //   const [searchParams, setSearchParams] = useSearchParams();
-  //   const courseId = searchParams.get("id");
+  const [errorState, setErrorState] = useState(null);
   const { courseId } = useParams();
   const navigate = useNavigate();
 
@@ -51,6 +54,11 @@ const EditCardPage = () => {
     e.preventDefault();
     try {
       console.log(courseData);
+      const errors = validateEditCardSchema(courseData);
+      if (errors) {
+        setErrorState(errors);
+        return;
+      }
       await axios.put("/admin/editCourse/", {
         productID: courseData._id,
         couseName: courseData.couseName,
@@ -58,6 +66,7 @@ const EditCardPage = () => {
         lecturer: courseData.lecturer,
         description: courseData.description,
       });
+      navigate(ROUTES.HOME);
     } catch (err) {
       console.log(err.response.data);
     }
@@ -81,6 +90,9 @@ const EditCardPage = () => {
               onChange={handleInputChange}
               value={courseData.couseName}
             />
+            {errorState && errorState.couseName && (
+              <AlertPartial>{errorState.couseName.join("<br>")}</AlertPartial>
+            )}
           </div>
           <div className="form-group col-md-6">
             <label>Category</label>
@@ -91,6 +103,9 @@ const EditCardPage = () => {
               value={courseData.category}
               onChange={handleInputChange}
             />
+            {errorState && errorState.category && (
+              <AlertPartial>{errorState.category.join("<br>")}</AlertPartial>
+            )}
           </div>
 
           <div className="form-group col-md-6">
@@ -102,6 +117,9 @@ const EditCardPage = () => {
               value={courseData.lecturer}
               onChange={handleInputChange}
             />
+            {errorState && errorState.lecturer && (
+              <AlertPartial>{errorState.lecturer.join("<br>")}</AlertPartial>
+            )}
           </div>
 
           <div className="form-group col-md-6">
@@ -113,16 +131,9 @@ const EditCardPage = () => {
               value={courseData.description}
               onChange={handleInputChange}
             />
-          </div>
-          <div className="form-group col-md-6">
-            <label>Description:</label>
-            <input
-              type="text"
-              className="form-control mb-3"
-              id="description"
-              value={courseData.description}
-              onChange={handleInputChange}
-            />
+            {errorState && errorState.description && (
+              <AlertPartial>{errorState.description.join("<br>")}</AlertPartial>
+            )}
           </div>
         </div>
         <ButtonPartial
