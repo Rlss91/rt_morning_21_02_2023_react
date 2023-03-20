@@ -7,7 +7,7 @@ const idSchema = Joi.object({
 });
 
 const editCardSchema = Joi.object({
-  couseName: Joi.string().min(3).max(255),
+  couseName: Joi.string().min(3).max(255).label("Course name"),
   category: Joi.string().min(3).max(255),
   lecturer: Joi.string().min(3).max(255),
   description: Joi.string().min(3).max(255),

@@ -53,8 +53,12 @@ const EditCardPage = () => {
   const handleSaveChanges = async (e) => {
     e.preventDefault();
     try {
-      console.log(courseData);
-      const errors = validateEditCardSchema(courseData);
+      const errors = validateEditCardSchema({
+        couseName: courseData.couseName,
+        category: courseData.category,
+        lecturer: courseData.lecturer,
+        description: courseData.description,
+      });
       if (errors) {
         setErrorState(errors);
         return;
